@@ -46,43 +46,46 @@ app.use(function (req, res, next) {
 const login = require("./routes/login");
 app.use("/", login);
 
+const product = require("./routes/product");
+const e = require('express');
+app.use("/product", product);
+
 
 //testing
-// SET STORAGE
-var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'src/public/uploads')
-    },
-    filename: function (req, file, cb) {
-        cb(null, file.fieldname + '-' + Date.now())
-    }
-})
 
-var upload = multer({ 
-    storage: storage, 
+
+const upload = multer({
+    dest: './public/uploads/',
     fileFilter: function (req, file, cb) {
         if (file.mimetype !== 'image/png' && file.mimetype !== 'image/jpg' && file.mimetype !== 'image/jpeg') {
-            return cb(null, false);
-        }else{
+            return cb("File phải là ảnh", false);
+        } else {
             cb(null, true);
         }
     },
-    limits:{
-        fileSize: 1024 * 1024
+    limits: {
+        files:3,
     }
 })
 
-app.get('/uploads', (req, res) => {
-    res.render('upload');
+app.get('/uploadss', (req, res) => {
+    res.render('upload',{ message: req.flash('message')});
 })
 
 
-app.post('/uploads', upload.single('img'), (req, res, next) => {
-    const file = req.file
-    if (!file) {
-        res.send("eror");
+app.post('/uploadss', upload.array('img', 3), (req, res) => {
+    try {
+        upload(req, res, function (err) {
+            if (err) {
+                res.render('upload');
+            }
+        })
+    }catch(err) {
+        console.log(err)
+    }finally{
+        console.log(req.body)
+        res.send(req.files);
     }
-    res.send(req.file);
 })
 
 

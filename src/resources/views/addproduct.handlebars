@@ -1,0 +1,148 @@
+<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+
+<div class="col" style="margin: auto; text-align: center;padding-top: 30px;">
+    <h1>Thêm sản phẩm</h1>
+</div>
+
+<form action="/product/add-product" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-6 p-5">
+            <div class="form-group">
+                <label for="maneProduct">Tên sản phẩm</label>
+                <input type="text" class="form-control" id="maneProduct" name="maneProduct" placeholder="Tên sản phẩm">
+            </div>
+            <div class="form-group">
+                <label for="priceProduct">Giá sản phẩm</label>
+                <input type="number" class="form-control" id="priceProduct" name="priceProduct"  placeholder="Giá sản phẩm" >
+            </div>
+            <div class="form-group">
+                <label for="saleProduct">Khuyến mãi</label>
+                <input type="number" class="form-control" id="saleProduct" name="saleProduct" placeholder="Khuyến mãi (%)" >
+            </div>
+            <div class="form-group">
+                <label for="categoryProduct">Phân loại</label>
+                <select class="custom-select mr-sm-2" id="categoryProduct" name="categoryProduct">
+                    <option selected>Chọn...</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="typeProduct">Thể loại</label>
+                <select class="custom-select mr-sm-2" id="typeProduct" name="typeProduct">
+                    <option selected>Chọn...</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="desProduct">Thông tin chi tiết</label>
+                <textarea class="form-control" id="desProduct" rows="3" name="desProduct"></textarea>
+            </div>
+        </div>
+
+
+        <div class="col-6  p-5">
+            <div class="form-group">
+                <label>Hình ảnh</label>
+                <div id="preview" style="margin-top: 10px; margin-bottom: 10px;"></div>
+                <input type="file" class="form-control-file" id="pictureProduct" name="pictureProduct" multiple="true">
+
+            </div>
+            <div class="form-group">
+                <label>Mô tả chi tiết</label>
+
+                <div class="row m-2 border">
+                    <div class="col-3 p-2" id="newElementKey">Thông tin</div>
+                    <div class="col-9 p-2" id="newElementValue">Nội dung</div>
+                </div>
+
+                <div class="row ml-2">
+                    <div id="dynamicCheck" style="width: 30px; height: 30px;">
+                        <img src="../../image/add.svg" width="100%" height="100%" onclick="add();">
+                    </div>
+                    <div id="dynamicCheck" style="width: 30px; height: 30px;">
+                        <img src="../../image/remove.svg" width="100%" height="100%" onclick="remove();">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col p-5" style="margin: auto; text-align: center">
+        <input type="submit" class="btn btn-primary" style="width: 300px;"/>
+    </div>
+
+</form>
+
+<script>
+    var i = 0;
+    function add() {
+        i++;
+        var txtNewInputKey = document.createElement('div');
+        var txtNewInputValue = document.createElement('div');
+
+        // Then add the content (a new input box) of the element.
+        txtNewInputKey.innerHTML = "<input type='text' id='keyInfoProduct" + i + "' name='keyInfoProduct' style='margin-top: 10px; margin-bottom: 10px;'>";
+        txtNewInputValue.innerHTML = "<input type='text' id='valueInfoProduct" + i + "' name='valueInfoProduct' style='margin-top: 10px; margin-bottom: 10px; width: 100%;'>";
+
+        // Finally put it where it is supposed to appear.
+        document.getElementById("newElementKey").appendChild(txtNewInputKey);
+        document.getElementById("newElementValue").appendChild(txtNewInputValue);
+    }
+
+    function remove() {
+        var keyInfoProduct = document.getElementById("keyInfoProduct"+i);
+        var ValueInfoProduct = document.getElementById("valueInfoProduct"+i);
+
+        keyInfoProduct.remove();
+        ValueInfoProduct.remove();
+        i--;
+        if(i<0){
+            i=0;
+        }
+    }
+
+
+
+
+
+
+    function previewImages() {
+
+        var preview = document.querySelector('#preview');
+
+        if (this.files) {
+            [].forEach.call(this.files, readAndPreview);
+        }
+
+        function readAndPreview(file) {
+
+            // Make sure `file.name` matches our extensions criteria
+            if (!/\.(jpe?g|png|gif)$/i.test(file.name)) {
+                return alert("Hãy chọn ảnh");
+            } // else...
+
+            var reader = new FileReader();
+
+            reader.addEventListener("load", function () {
+                var image = new Image();
+                image.height = 100;
+                image.title = file.name;
+                image.src = this.result;
+                preview.appendChild(image);
+            });
+
+            reader.readAsDataURL(file);
+        }
+
+    }
+    document.querySelector('#pictureProduct').addEventListener("change", previewImages);
+</script>

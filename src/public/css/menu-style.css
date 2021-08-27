@@ -194,7 +194,6 @@ body{
     width: calc(100%-250px); /* .sidebar width is -> 250px */
     margin-top: 50px;
     margin-left: 250px;
-    background: url(../img/bg.jpg) no-repeat center center;
     background-size: cover;
     height: 100vh;
     transition: 0.3s;
