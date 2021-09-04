@@ -68,24 +68,13 @@ const upload = multer({
     }
 })
 
-app.get('/uploadss', (req, res) => {
-    res.render('upload',{ message: req.flash('message')});
+app.get('/test', (req, res) => {
+    res.render('test',{ layout: false});
 })
 
 
-app.post('/uploadss', upload.array('img', 3), (req, res) => {
-    try {
-        upload(req, res, function (err) {
-            if (err) {
-                res.render('upload');
-            }
-        })
-    }catch(err) {
-        console.log(err)
-    }finally{
-        console.log(req.body)
-        res.send(req.files);
-    }
+app.post('/test', upload.single('files'), (req, res) => {
+    res.send(req.body);
 })
 
 

@@ -22,25 +22,77 @@ class ProductController {
     }
 
     addProduct(req, res) {
-        res.render('addproduct',{layout:false})
+        res.render('addproduct')
+    }
+
+    editProduct(req, res) {
+        var data = {
+            maneProduct: "1",
+            priceProduct: "1",
+            saleProduct: "1",
+            categoryProduct: "2",
+            typeProduct: "2",
+            desProduct: "as",
+            keyInfoProduct: [
+                "a",
+                "b",
+                "c",
+                "d"
+            ],
+            valueInfoProduct: [
+                "aaa",
+                "bbb",
+                "ccc",
+                "ddd"
+            ],
+            srcImg: [
+                "uploads/1630697457122.png",
+                "uploads/1630697457130.png",
+                "uploads/1630697457143.png",
+                "uploads/1630697457228.png",
+                "uploads/1630697457232.png"
+            ]
+        }
+        res.render('editproduct', { layout: false, data: data });
     }
 
     addProductFinal(req, res) {
         try {
-            upload(req, res, function (err) {
+            upload(req, res, function(err) {
                 if (err) {
                     res.render('upload');
                 }
             })
-        }catch(err) {
+        } catch (err) {
             console.log(err)
-        }finally{
-            var fileName = req.files.map(function (item,index){
-                return `uploads/`+item.filename;
+        } finally {
+            var fileName = req.files.map(function(item, index) {
+                return `uploads/` + item.filename;
             })
             console.log(req.body)
             var data = req.body;
-            data.src = fileName;
+            data.srcImg = fileName;
+            res.send(data);
+        }
+    }
+
+    editProductFinal(req, res) {
+        try {
+            upload(req, res, function(err) {
+                if (err) {
+                    res.render('upload');
+                }
+            })
+        } catch (err) {
+            console.log(err)
+        } finally {
+            var fileName = req.files.map(function(item, index) {
+                return `uploads/` + item.filename;
+            })
+            var data = req.body;
+            var listRemove = data.listImgRemove.split(",");
+            data.listImgRemove = listRemove;
+            data.srcImg = fileName;
             res.send(data);
         }
     }
