@@ -36,49 +36,24 @@ con.connect((err) => {
     console.log("Connected!!!")
 })
 
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
     req.con = con
     next()
 })
 
 
 // Routing
+//Login
 const login = require("./routes/login");
 app.use("/", login);
 
+//Product
 const product = require("./routes/product");
-const e = require('express');
 app.use("/product", product);
 
-
-//testing
-
-
-const upload = multer({
-    dest: './public/uploads/',
-    fileFilter: function (req, file, cb) {
-        if (file.mimetype !== 'image/png' && file.mimetype !== 'image/jpg' && file.mimetype !== 'image/jpeg') {
-            return cb("File phải là ảnh", false);
-        } else {
-            cb(null, true);
-        }
-    },
-    limits: {
-        files:3,
-    }
-})
-
-app.get('/test', (req, res) => {
-    res.render('test',{ layout: false});
-})
-
-
-app.post('/test', upload.single('files'), (req, res) => {
-    res.send(req.body);
-})
-
-
-
+//News
+const news = require("./routes/news");
+app.use("/news", product);
 
 app.listen(3001, () => {
     console.log('http://localhost:3001')
