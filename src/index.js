@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
-const multer = require('multer');
 
 const app = express();
 
@@ -53,7 +52,7 @@ app.use("/product", product);
 
 //News
 const news = require("./routes/news");
-app.use("/news", product);
+app.use("/news", news);
 
 app.listen(3001, () => {
     console.log('http://localhost:3001')

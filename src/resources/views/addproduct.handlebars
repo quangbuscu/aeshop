@@ -4,7 +4,22 @@
 
 <style>
     .input {
-        background-color:#DFDFDF;
+        background-color: #DFDFDF;
+    }
+    .form-control-file {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+    }
+    .btn-add-img{
+        color: white;
+        padding: 5px 20px;
+        background-color: #FF000A;
+        border-radius: 15px;
+        margin-top: 15px;
     }
 </style>
 
@@ -18,7 +33,8 @@
         <div class="col-xl-6 p-5">
             <div class="form-group">
                 <label for="maneProduct">Tên sản phẩm</label>
-                <input type="text" class="form-control input input" id="maneProduct" name="maneProduct" placeholder="Tên sản phẩm" style="background-color: #DFDFDF">   
+                <input type="text" class="form-control input input" id="maneProduct" name="maneProduct"
+                    placeholder="Tên sản phẩm" style="background-color: #DFDFDF">
             </div>
             <div class="form-group">
                 <label for="priceProduct">Giá sản phẩm</label>
@@ -60,15 +76,17 @@
 
 
         <div class="col-xl-6 p-5">
-            <div class="form-group field input p-1">
+            <div class="form-group field input pl-2 pb-2">
+
                 <input type="file" class="form-control-file" id="pictureProduct" name="pictureProduct" multiple="true"
                     onclick="deletePriview()">
-
+                
+                <label for="pictureProduct" class="btn-add-img">Thêm ảnh</label>
             </div>
             <div class="form-group">
                 <label>Mô tả chi tiết</label>
 
-                <div class="row m-2 border pt-2 pb-2">
+                <div class="row m-2 border pt-2 pb-2" style="background-color: #DFDFDF">
                     <div class="col-4" id="newElementKey">Thông tin</div>
                     <div class="col-8" id="newElementValue">Nội dung</div>
                 </div>
@@ -159,9 +177,6 @@
                     fileReader.readAsDataURL(f);
                 }
             });
-            if (imginput.value === null) {
-                console.log("ABC")
-            }
         } else {
             alert("Your browser doesn't support to File API")
         }
