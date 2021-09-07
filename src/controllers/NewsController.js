@@ -21,7 +21,7 @@ class NewsController {
                 return `uploads/` + item.filename;
             })
             var data = req.body;
-            data.srcImg = req.files;
+            data.srcImg = fileName;
             res.send(data);
         }
     }

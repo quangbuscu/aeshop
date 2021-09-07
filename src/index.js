@@ -54,6 +54,11 @@ app.use("/product", product);
 const news = require("./routes/news");
 app.use("/news", news);
 
+//Order
+const order = require("./routes/order");
+app.use("/order", order);
+
+
 app.listen(3001, () => {
     console.log('http://localhost:3001')
 });

@@ -89,10 +89,10 @@
             "<div class='shadow p-3 bg-white d-flex mt-3' style=' width:100%; border-radius: 15px; margin-right: 10px;' id='elementNews" + i + "'>" +
             "<div style=' text-align: center;'>" +
             "<div class='shadow form-group field' id='show-img'>" +
-            "<input type='file' class='form-control-file' id='pictureNews0' name='pictureNews'>" +
+            "<input type='file' class='form-control-file' id='pictureNews' name='pictureNews'>" +
             "<br>" +
             "</div>" +
-            "<label for='pictureNews0' class='btn-add-img'>Thêm ảnh</label>" +
+            "<label for='pictureNews' class='btn-add-img'>Thêm ảnh</label>" +
             "</div>" +
             "<div class='form-group pl-3' style='width: 100%;'>" +
             "<textarea class='form-control input bg-white' id='contentNews" + i + "' rows='3' name='desProduct'" +
@@ -115,44 +115,44 @@
         i--;
     }
 
-     document.getElementById("pictureNews0").onclick = function () {
-            removePriviewImage();
+    document.getElementById("pictureNews0").onclick = function () {
+        removePriviewImage();
+    }
+    function removePriviewImage() {
+        var pip = document.getElementsByClassName("pip");
+        var pipLength = pip.length;
+        for (var i = 0; i < pipLength; i++) {
+            pip[0].remove();
         }
-        function removePriviewImage() {
-            var pip = document.getElementsByClassName("pip");
-            var pipLength = pip.length;
-            for (var i = 0; i < pipLength; i++) {
-                pip[0].remove();
-            }
-        }
-        $(document).ready(function () {
-            if (window.File && window.FileList && window.FileReader) {
-                $("#pictureNews0").on("change", function (e) {
-                    var files = e.target.files,
-                        filesLength = files.length;
-                    for (var x = 0; x < filesLength; x++) {
-                        var f = files[x]
-                        if (!/\.(jpe?g|png|gif)$/i.test(f.name)) {
-                            alert("Hãy chọn ảnh");
-                            document.getElementById("pictureNews0").value = null;
-                            return false;
-                        }
-                        var fileReader = new FileReader();
-                        fileReader.onload = (function (e) {
-                            var file = e.target;
-                            if (document.getElementById("pictureNews0").value == "") {
-                                $("");
-                            } else {
-                                $("<span class='pip'>" +
-                                    "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
-                                    "</span>").insertAfter("#pictureNews0");
-                            }
-                        });
-                        fileReader.readAsDataURL(f);
+    }
+    $(document).ready(function () {
+        if (window.File && window.FileList && window.FileReader) {
+            $("#pictureNews0").on("change", function (e) {
+                var files = e.target.files,
+                    filesLength = files.length;
+                for (var x = 0; x < filesLength; x++) {
+                    var f = files[x]
+                    if (!/\.(jpe?g|png|gif)$/i.test(f.name)) {
+                        alert("Hãy chọn ảnh");
+                        document.getElementById("pictureNews0").value = null;
+                        return false;
                     }
-                });
-            } else {
-                alert("Your browser doesn't support to File API")
-            }
-        });
+                    var fileReader = new FileReader();
+                    fileReader.onload = (function (e) {
+                        var file = e.target;
+                        if (document.getElementById("pictureNews0").value == "") {
+                            $("");
+                        } else {
+                            $("<span class='pip'>" +
+                                "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+                                "</span>").insertAfter("#pictureNews0");
+                        }
+                    });
+                    fileReader.readAsDataURL(f);
+                }
+            });
+        } else {
+            alert("Your browser doesn't support to File API")
+        }
+    });
 </script>
