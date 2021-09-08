@@ -38,7 +38,7 @@
 <div class="p-4" style="height: 80px;">
     <h2>THÊM TIN TỨC</h2>
 </div>
-<form action="/news/add-news" method="post" enctype="multipart/form-data" class="pr-5 pl-5 pb-5" id="news-form">
+<form action="/news/edit-news" method="post" enctype="multipart/form-data" class="pr-5 pl-5 pb-5" id="news-form">
 
     <div class="shadow p-3 bg-white d-flex flex-row mb-3" style=" width:100%; border-radius: 15px; margin-right: 10px;">
         <div style=" text-align: center;">
@@ -70,6 +70,9 @@
 
         </div>
     </div>
+    <script>
+
+    </script>
 </form>
 <div class="col p-5" style="margin: auto; text-align: center">
     <input type="submit" onclick="send()" class="btn btn-primary" style="width: 300px;" />
@@ -99,7 +102,7 @@
         document.getElementById("newElementNews").appendChild(newElementNews);
 
         var script = document.createElement("script");
-        script.innerHTML =
+        script.innerHTML = 
         "imgInp"+i+".onchange = evt => { \n"+
             "const [file"+i+"] = imgInp"+i+".files;\n"+
             "if (file"+i+") {\n"+
