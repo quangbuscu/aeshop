@@ -32,7 +32,10 @@ router.get("/add-news", (req, res) => controller.addNews(req, res));
 
 router.post("/add-news", upload.array('pictureNews'), (req, res) => controller.addNewsFinally(req, res));
 
-// router.post("/login", (req, res) => controller.loginFinal(req, res));
+router.get("/edit-news", (req, res) => controller.editNews(req, res));
+
+router.post("/edit-news", upload.array('pictureNews'), (req, res) => controller.editNewsFinally(req, res));
+
 
 
 module.exports = router;
