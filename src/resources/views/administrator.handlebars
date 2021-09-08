@@ -1,0 +1,104 @@
+<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+
+<style>
+  .input {
+    background-color: #DFDFDF;
+  }
+
+  .form-control-file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  .btn-add-img {
+    color: white;
+    padding: 5px 20px;
+    background-color: #FF000A;
+    border-radius: 15px;
+  }
+
+  #show-img {
+    width: 200px;
+    height: 100px;
+    text-align: center;
+    border-radius: 15px;
+  }
+</style>
+
+<div class="p-4" style="height: 80px;">
+  <h2>CHỈNH SỬA THÔNG TIN NGƯỜI DÙNG</h2>
+</div>
+
+<div class="p-5">
+  <form action="">
+    <div class="d-flex justify-content-between" style="width: 100%;">
+      <div class="shadow p-3 d-flex justify-content-between" style="width:30%">
+        <div class="d-flex align-items-center" style=" text-align: center;">
+          <img class="border rounded-circle ml-4" src="../../../image/logo1.svg" width="100" height="100" alt>
+          <div class="pl-5">
+            <input type="file" class="form-control-file" id="pictureNews" name="pictureNews">
+            <label for="pictureNews0" class="btn-add-img">Thay đổi ảnh</label>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="shadow p-3" style="width:65%">
+        <h3>TÊN TÀI KHOẢN</h3>
+        <h3 class="shadow p-3">HIẾU TRẦN </h3>
+      </div>
+    </div>
+
+    <div class="pt-5">
+      <div class="shadow p-3">
+        <h4>ĐỔI MẬT KHẨU</h4>
+        <div class="p-3 d-flex justify-content-between">
+          <input type="password" class="form-control shadow mr-3" id="old-password" name="desProduct"
+            placeholder="Nhập mật khẩu cũ">
+          <i class="far fa-eye" id="toggleOldPassword"
+            style="position: relative; top: 10px; left: -45px;cursor: pointer;"></i>
+          </input>
+          <input type="password" class="form-control shadow mr-3" id="new-password" name="desProduct"
+            placeholder="Nhập mật khẩu cũ">
+          <i class="far fa-eye" id="toggleNewPassword"
+            style="position: relative; top: 10px; left: -45px;cursor: pointer;"></i>
+          </input>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-row-reverse" style="margin-top:100px">
+      
+      <input type="submit" class="border-0 rounded text-white font-weight-bold" value="LƯU"
+        style="padding: 10px 100px; background-color: #F91A07;">
+        <a class="border-0 rounded text-white font-weight-bold mr-5" style="padding: 10px 100px; background-color: #C5C5C5;" href="/administrator"> HỦY </a>
+    </div>
+  </form>
+</div>
+
+<script>
+  const toggleOldPassword = document.querySelector('#toggleOldPassword');
+  const toggleNewPassword = document.querySelector('#toggleNewPassword');
+  const oldPassword = document.querySelector('#old-password');
+  const newPassword = document.querySelector('#new-password');
+
+  toggleOldPassword.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = oldPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+    oldPassword.setAttribute('type', type);
+    // toggle the eye slash icon
+    this.classList.toggle('fa-eye-slash');
+  });
+
+  toggleNewPassword.addEventListener('click', function (e) {
+    // toggle the type attribute
+    const type = newPassword.getAttribute('type') === 'password' ? 'text' : 'password';
+    newPassword.setAttribute('type', type);
+    // toggle the eye slash icon
+    this.classList.toggle('fa-eye-slash');
+  });
+</script>

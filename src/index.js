@@ -58,6 +58,10 @@ app.use("/news", news);
 const order = require("./routes/order");
 app.use("/order", order);
 
+//Administrator
+const administrator = require("./routes/administrator");
+app.use("/administrator", administrator);
+
 
 app.listen(3001, () => {
     console.log('http://localhost:3001')
