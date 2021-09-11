@@ -97,8 +97,8 @@
                                 <span>Hỗ trợ</span>
                             </a>
                         </li>
-                        <li class="nav-item" id="support" role="presentation">
-                            <a class="nav-link" id="supportChild" href="#">
+                        <li class="nav-item" id="about-us" role="presentation">
+                            <a class="nav-link" id="aboutUsChild" href="/about-us">
                                 <i style="width: 28px;" class="fas fa-info pr-2 pl-1"></i>
                                 <span>Thông tin về cửa hàng</span>
                             </a>
@@ -141,12 +141,14 @@
         var bill = document.getElementById("bill")
         var setting = document.getElementById("setting")
         var support = document.getElementById("support")
+        var aboutUs = document.getElementById("about-us")
 
         var newsChild = document.getElementById("newsChild")
         var productChild = document.getElementById("productChild")
         var billChild = document.getElementById("billChild")
         var settingChild = document.getElementById("settingChild")
         var supportChild = document.getElementById("supportChild")
+        var aboutUsChild = document.getElementById("aboutUsChild")
 
         var newBill = document.getElementById("newBill")
         var newBillNumber = document.getElementById("newBillNumber")
@@ -217,6 +219,17 @@
             billColor()
             settingColor()
         }
+        aboutUs.onclick = function () {
+            setCookie("menu", "about-us");
+        }
+        if (getCookie("menu") == "about-us") {
+            aboutUs.style.backgroundColor = '#FF000A';
+            aboutUsChild.style.color = '#FFFFFF';
+            newsColor();
+            productColor()
+            billColor()
+            settingColor()
+        }
 
         function newsColor() {
             news.style.backgroundColor = '#FFFFFF';
@@ -241,6 +254,10 @@
         function supportColor() {
             support.style.backgroundColor = '#FFFFFF';
             supportChild.style.color = '#000000';
+        }
+        function aboutUsColor() {
+            aboutUs.style.backgroundColor = '#FFFFFF';
+            aboutUsChild.style.color = '#000000';
         }
 
 

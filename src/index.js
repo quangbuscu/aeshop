@@ -66,6 +66,10 @@ app.use("/administrator", administrator);
 const help = require("./routes/help");
 app.use("/help", help);
 
+//about us
+const aboutUs = require("./routes/about-us");
+app.use("/about-us", aboutUs);
+
 
 
 app.listen(3001, () => {
