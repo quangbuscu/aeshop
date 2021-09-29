@@ -1,7 +1,4 @@
 const Product = require('../models/Product');
-const jwt = require('jsonwebtoken');
-
-
 // const db = require(`../models/index.js`);
 /**
  * Class Auth Controller
@@ -15,7 +12,6 @@ class ProductController {
         //         res.send('Lỗi');
         //     }
         // })
-
         if (req.cookies.token) {
             res.render('product')
         }

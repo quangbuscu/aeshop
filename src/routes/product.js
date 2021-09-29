@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const multer = require('multer');
+const Auth = require('../middleware/Auth');
 
 var storage = multer.diskStorage({
     destination: './src/public/uploads/',
@@ -26,7 +27,7 @@ const upload = multer({
 const ProductController = require("../controllers/ProductController");
 const controller = new ProductController();
 
-router.get("/", (req, res) => controller.listProduct(req, res));
+router.get("/",Auth.verifyToken,(req, res) => controller.listProduct(req, res));
 
 router.get("/add-product", (req, res) => controller.addProduct(req, res));
 
