@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
+require('dotenv').config()
 
 const app = express();
 
@@ -72,6 +73,6 @@ app.use("/about-us", aboutUs);
 
 
 
-app.listen(3001, () => {
+app.listen(process.env.APP_PORT, () => {
     console.log('http://localhost:3001')
 });

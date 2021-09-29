@@ -1,7 +1,7 @@
 module.exports = {
 
-    getAdmin(con, username, callback) {
-      con.query('SELECT * FROM ex1.admin WHERE username = ?',username, callback)
+    getAdmin(con, [email, password], callback) {
+        con.query('SELECT * FROM aeshop.admin WHERE email = ? and password = ?', [email, password], callback)
     },
 
-  }
+}
