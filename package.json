@@ -26,11 +26,11 @@
   "devDependencies": {},
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/Dien090497/severaeshop.git"
+    "url": "https://github.com/Dien090497/aeshop.git"
   },
   "bugs": {
-    "url": "https://gitlab.com/Dien090497/severaeshop/issues"
+    "url": "https://github.com/Dien090497/aeshop/issues"
   },
-  "homepage": "https://gitlab.com/Dien090497/severaeshop#readme",
+  "homepage": "https://github.com/Dien090497/aeshop#readme",
   "description": ""
 }
