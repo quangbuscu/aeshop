@@ -34,10 +34,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 // Connect MySQL
 const con = require("./config/db.js")
-con.connect((err) => {
-    if (err) throw err;
-    console.log("Connected!!!")
-})
 
 app.use(function(req, res, next) {
     req.con = con
