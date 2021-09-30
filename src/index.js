@@ -15,29 +15,27 @@ app.set('views', path.join(__dirname, 'resources/views'))
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use(session({
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      maxAge: 60000,
-      secure: true,
-    }
+  name: 'session',
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true,
+  maxAge: 60000,
 }));
 app.use(flash());
 app.use((req, res, next) => {
-    res.locals.message = req.session.message;
-    delete req.session.message;
-    next();
+  res.locals.message = req.session.message;
+  delete req.session.message;
+  next();
 });
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({extended: false}))
 
 // Connect MySQL
 const con = require("./config/db.js")
 
-app.use(function(req, res, next) {
-    req.con = con
-    next()
+app.use(function (req, res, next) {
+  req.con = con
+  next()
 })
 
 
@@ -76,5 +74,5 @@ app.use("/about-us", aboutUs);
 // app.use("/", login);
 
 app.listen(process.env.APP_PORT || process.env.PORT, () => {
-    console.log('http://localhost:3001')
+  console.log('http://localhost:3001')
 });
