@@ -73,8 +73,8 @@ app.use("/about-us", aboutUs);
 
 
 // Routing Client
-const loginUser = require("./routesUser/login");
-app.use("/", login);
+// const loginUser = require("./routesUser/login");
+// app.use("/", login);
 
 app.listen(process.env.APP_PORT || process.env.PORT, () => {
     console.log('http://localhost:3001')
