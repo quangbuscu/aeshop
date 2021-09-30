@@ -21,7 +21,7 @@ class LoginController {
                 req.flash('message', 'Sai tài khoản hoặc mật khẩu!')
                 return res.redirect('/');
             } else {
-                const token = jwt.sign({ email: result[0].email }, process.env.ACCESS_TOKEN_SECRET,{expiresIn:300});
+                const token = jwt.sign({ email: result[0].email }, process.env.ACCESS_TOKEN_SECRET,{expiresIn:'2d'});
                 console.log('TOKEN',token)
                 res.cookie('token', token)
                 return res.render('home');

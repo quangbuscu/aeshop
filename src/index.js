@@ -42,7 +42,7 @@ app.use(function(req, res, next) {
 })
 
 
-// Routing
+// RoutingWeb
 //Login
 const login = require("./routes/login");
 app.use("/", login);
@@ -72,6 +72,9 @@ const aboutUs = require("./routes/about-us");
 app.use("/about-us", aboutUs);
 
 
+// Routing Client
+const loginUser = require("./routesUser/login");
+app.use("/", login);
 
 app.listen(process.env.APP_PORT, () => {
     console.log('http://localhost:3001')
