@@ -3,7 +3,6 @@ const exphdb = require('express-handlebars');
 const path = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const MongoStore = require('connect-mongo')(session);
 const flash = require('connect-flash');
 const cookieParser = require('cookie-parser');
 require('dotenv').config()
@@ -16,7 +15,6 @@ app.set('views', path.join(__dirname, 'resources/views'))
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use(session({
-  store: new MongoStore({ mongoUrl: 'mongodb://localhost/test-app' }),
     secret: 'secret',
     resave: false,
     saveUninitialized: true,
