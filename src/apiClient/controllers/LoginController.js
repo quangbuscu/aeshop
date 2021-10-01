@@ -88,10 +88,7 @@ class LoginController {
                 }
             })
         }
-        api.message = 'failed';
-        api.error_code = 400;
-        api.err = err;
-        return res.json({ api })
+
     }
 
     register(req, res) {
