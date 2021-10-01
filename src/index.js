@@ -15,11 +15,11 @@ app.set('views', path.join(__dirname, 'resources/views'))
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use(session({
-  name: 'session',
-  secret: 'secret',
-  resave: false,
-  saveUninitialized: true,
-  maxAge: 60000,
+    name: 'session',
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: true,
+    maxAge: 60000,
 }));
 app.use(flash());
 app.use((req, res, next) => {
@@ -28,7 +28,9 @@ app.use((req, res, next) => {
     next();
 });
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }))
+// app.use(bodyParser.urlencoded({ extended: false }))
 
 // Connect MySQL
 const con = require("./config/db.js")
@@ -70,9 +72,9 @@ app.use("/about-us", aboutUs);
 
 
 // Routing Client
-// const loginUser = require("./routesUser/login");
-// app.use("/", login);
+const client = require("./apiClient/routes/login");
+app.use("/client", client);
 
-app.listen(process.env.PORT || 3001 , () => {
+app.listen(process.env.PORT || 3001, () => {
     console.log('http://localhost:3001')
 });
