@@ -15,13 +15,11 @@ app.set('views', path.join(__dirname, 'resources/views'))
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
 app.use(session({
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      maxAge: 60000,
-      secure: true,
-    }
+  name: 'session',
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true,
+  maxAge: 60000,
 }));
 app.use(flash());
 app.use((req, res, next) => {
@@ -75,6 +73,6 @@ app.use("/about-us", aboutUs);
 // const loginUser = require("./routesUser/login");
 // app.use("/", login);
 
-app.listen(process.env.PORT || process.env.APP_PORT , () => {
+app.listen(process.env.PORT || 3001 , () => {
     console.log('http://localhost:3001')
 });

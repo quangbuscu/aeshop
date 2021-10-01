@@ -12,12 +12,12 @@ class LoginController {
     }
 
     loginFinal(req, res) {
-        console.log(req);
-        Admin.getAdmin(req.con, [req.body.username, req.body.password],
+        Admin.getAdmin(req.con, [req.body.email, req.body.password],
             (err, result) => {
             if (err) throw err;
+            console.log(result);
 
-            if (result[0] == undefined || result[0] == null) {
+            if (result[0] === undefined || result[0] == null) {
                 req.flash('message', 'Sai tài khoản hoặc mật khẩu!')
                 return res.redirect('/');
             } else {
