@@ -75,6 +75,6 @@ app.use("/about-us", aboutUs);
 // const loginUser = require("./routesUser/login");
 // app.use("/", login);
 
-app.listen(process.env.APP_PORT || process.env.PORT, () => {
+app.listen(process.env.PORT || process.env.APP_PORT , () => {
     console.log('http://localhost:3001')
 });
