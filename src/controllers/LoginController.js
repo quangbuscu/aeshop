@@ -6,6 +6,14 @@ const Admin = require('../models/Admin')
      */
 class LoginController {
     login(req, res) {
+      var ipAddr = req.headers["x-forwarded-for"];
+      if (ipAddr){
+        var list = ipAddr.split(",");
+        ipAddr = list[list.length-1];
+      } else {
+        ipAddr = req.connection.remoteAddress;
+      }
+      console.log(ipAddr)
         res.render('login', { layout: false, message: req.flash('message') });
     }
 

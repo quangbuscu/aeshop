@@ -29,8 +29,6 @@ app.use((req, res, next) => {
 });
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }))
-// app.use(bodyParser.urlencoded({ extended: false }))
-// app.use(bodyParser.urlencoded({ extended: false }))
 
 // Connect MySQL
 const con = require("./config/db.js")
