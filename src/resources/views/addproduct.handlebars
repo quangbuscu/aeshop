@@ -6,6 +6,7 @@
     .input {
         background-color: #DFDFDF;
     }
+
     .form-control-file {
         width: 0.1px;
         height: 0.1px;
@@ -14,7 +15,8 @@
         position: absolute;
         z-index: -1;
     }
-    .btn-add-img{
+
+    .btn-add-img {
         color: white;
         padding: 5px 20px;
         background-color: #FF000A;
@@ -33,7 +35,7 @@
         <div class="col-xl-6 p-5">
             <div class="form-group">
                 <label for="maneProduct">Tên sản phẩm</label>
-                <input type="text" class="form-control input input" id="maneProduct" name="maneProduct"
+                <input type="text" class="form-control input" id="maneProduct" name="maneProduct"
                     placeholder="Tên sản phẩm" style="background-color: #DFDFDF">
             </div>
             <div class="form-group">
@@ -47,7 +49,7 @@
                     placeholder="Khuyến mãi (%)">
             </div>
             <div class="form-group">
-                <label for="categoryProduct">Phân loại</label>
+                <label for="categoryProduct">Loại</label>
                 <select class="custom-select mr-sm-2 input" id="categoryProduct" name="categoryProduct">
                     <option selected>Chọn...</option>
                     <option value="1">1</option>
@@ -58,8 +60,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="typeProduct">Thể loại</label>
-                <select class="custom-select mr-sm-2 input" id="typeProduct" name="typeProduct">
+                <label for="sesionProduct">Mùa</label>
+                <select class="custom-select mr-sm-2 input" id="sesionProduct" name="sesionProduct">
                     <option selected>Chọn...</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -69,26 +71,36 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="desProduct">Thông tin chi tiết</label>
-                <textarea class="form-control input" id="desProduct" rows="3" name="desProduct"></textarea>
+                <label for="brandProduct">Thương hiệu</label>
+                <select class="custom-select mr-sm-2 input" id="brandProduct" name="brandProduct">
+                    <option selected>Chọn...</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
             </div>
         </div>
 
 
         <div class="col-xl-6 p-5">
-            <div class="form-group field input pl-2 pb-2">
-
-                <input type="file" accept="image/*" class="form-control-file" id="pictureProduct" name="pictureProduct" multiple="true"
-                    onclick="deletePriview()">
+            <div class="form-group">
+                <label for="desProduct">Thông tin chi tiết</label>
+                <textarea class="form-control input" id="desProduct" rows="3" name="desProduct"></textarea>
+            </div>
+            <div class="form-group field input pl-2 pb-2" style="border-radius: 5px;">
+                <input type="file" accept="image/*" class="form-control-file" id="pictureProduct" name="pictureProduct"
+                    multiple="true" onclick="deletePriview()">
 
                 <label for="pictureProduct" class="btn-add-img">Thêm ảnh</label>
             </div>
             <div class="form-group">
                 <label>Mô tả chi tiết</label>
 
-                <div class="row m-2 border pt-2 pb-2" style="background-color: #DFDFDF">
-                    <div class="col-4" id="newElementKey">Thông tin</div>
-                    <div class="col-8" id="newElementValue">Nội dung</div>
+                <div class="row m-2 border pt-2 pb-2" style="background-color: #DFDFDF; border-radius: 5px;">
+                    <div class="col-6" id="newElementKey">Size</div>
+                    <div class="col-6" id="newElementValue">Số lượng nhập</div>
                 </div>
 
                 <div class="row ml-2">
@@ -118,8 +130,8 @@
         var txtNewInputValue = document.createElement('div');
 
         // Then add the content (a new input box) of the element.
-        txtNewInputKey.innerHTML = "<input type='text' id='keyInfoProduct" + i + "' name='keyInfoProduct' style='margin-top: 10px; margin-bottom: 10px;'>";
-        txtNewInputValue.innerHTML = "<input type='text' id='valueInfoProduct" + i + "' name='valueInfoProduct' style='margin-top: 10px; margin-bottom: 10px; width: 100%;'>";
+        txtNewInputKey.innerHTML = "<input type='text' id='keyInfoProduct" + i + "' name='keyInfoProduct' style='margin-top: 10px; margin-bottom: 10px;width: 100%;'>";
+        txtNewInputValue.innerHTML = "<input type='number' id='valueInfoProduct" + i + "' name='valueInfoProduct' style='margin-top: 10px; margin-bottom: 10px; width: 100%;'>";
 
         // Finally put it where it is supposed to appear.
         document.getElementById("newElementKey").appendChild(txtNewInputKey);

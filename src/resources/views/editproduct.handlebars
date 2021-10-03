@@ -1,5 +1,27 @@
 <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="../../css/preview-image.css">
+<style>
+    .input {
+        background-color: #DFDFDF;
+    }
+
+    .form-control-file {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+    }
+
+    .btn-add-img {
+        color: white;
+        padding: 5px 20px;
+        background-color: #FF000A;
+        border-radius: 15px;
+        margin-top: 15px;
+    }
+</style>
 
 <div class="col" style="margin: auto; text-align: center;padding-top: 30px;">
     <h1>Sửa thông tin sản phẩm</h1>
@@ -12,26 +34,26 @@
         <div class="col-6 p-5">
             <div class="form-group">
                 <label for="maneProduct">Mã sản phẩm</label>
-                <input type="text" class="form-control" id="maneProduct" name="maneProduct" disabled>
+                <input type="text" class="form-control input" id="maneProduct" name="maneProduct" disabled>
             </div>
             <div class="form-group">
                 <label for="maneProduct">Tên sản phẩm</label>
-                <input type="text" class="form-control" id="maneProduct" name="maneProduct" value="{{data.maneProduct}}"
+                <input type="text" class="form-control input" id="maneProduct" name="maneProduct" value="{{data.maneProduct}}"
                     placeholder="Tên sản phẩm">
             </div>
             <div class="form-group">
                 <label for="priceProduct">Giá sản phẩm</label>
-                <input type="number" class="form-control" id="priceProduct" name="priceProduct"
+                <input type="number" class="form-control input" id="priceProduct" name="priceProduct"
                     value="{{data.priceProduct}}" placeholder="Giá sản phẩm">
             </div>
             <div class="form-group">
                 <label for="saleProduct">Khuyến mãi</label>
-                <input type="number" class="form-control" id="saleProduct" name="saleProduct"
+                <input type="number" class="form-control input" id="saleProduct" name="saleProduct"
                     value="{{data.saleProduct}}" placeholder="Khuyến mãi (%)">
             </div>
             <div class="form-group">
-                <label for="categoryProduct">Phân loại</label>
-                <select class="custom-select mr-sm-2" id="categoryProduct" name="categoryProduct">
+                <label for="categoryProduct">Loại</label>
+                <select class="custom-select mr-sm-2 input" id="categoryProduct" name="categoryProduct">
                     <option value="{{data.categoryProduct}}">Chọn...</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
@@ -41,9 +63,9 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="typeProduct">Thể loại</label>
-                <select class="custom-select mr-sm-2" id="typeProduct" name="typeProduct">
-                    <option value="{{data.typeProduct}}">Chọn...</option>
+                <label for="sesionProduct">Mùa</label>
+                <select class="custom-select mr-sm-2 input" id="sesionProduct" name="sesionProduct">
+                    <option value="{{data.sesionProduct}}">Chọn...</option>
                     <option value="1">11</option>
                     <option value="2">22</option>
                     <option value="3">33</option>
@@ -51,35 +73,35 @@
                     <option value="5">55</option>
                 </select>
             </div>
-            <div class="form-group">
-                <label for="desProduct">Thông tin chi tiết</label>
-                <textarea class="form-control" id="desProduct" rows="3" name="desProduct">{{data.desProduct}}</textarea>
-            </div>
         </div>
 
 
-        <div class="col-6  p-5">
+        <div class="col-6 p-5">
             <div class="form-group">
+                <label for="desProduct">Thông tin chi tiết</label>
+                <textarea class="form-control input" id="desProduct" rows="3" name="desProduct">{{data.desProduct}}</textarea>
+            </div>
+            <div class="form-group input p-2">
                 <label>Hình ảnh</label>
                 <div id="preview" style="margin-top: 10px; margin-bottom: 10px;"></div>
-                <input type="file" class="form-control-file" id="pictureProduct" name="pictureProduct" multiple="true">
+                <input type="file" accept="image/*" class="form-control input" id="pictureProduct" name="pictureProduct" multiple="true">
                 <div>
                     {{#each data.srcImg}}
                     <img src="../../{{this}}" class="imageThumb" id="img{{@index}}" name="{{this}}">
                     {{/each}}
                 </div>
             </div>
-            <div class="form-group">
-                <label>Mô tả chi tiết</label>
+            <div class="form-group input p-2" style="border-radius: 5px;">
+                <label>Số lượng nhập</label>
 
                 <div class="row m-2 border">
-                    <div class="col-3 p-2" id="newElementKey">Thông tin
+                    <div class="col-6 p-2" id="newElementKey">Size
                         {{#each data.keyInfoProduct}}
                         <input type='text' id='keyInfoProduct{{@index}}' name='keyInfoProduct'
-                            style='margin-top: 10px; margin-bottom: 10px;' value='{{this}}' />
+                            style='margin-top: 10px; margin-bottom: 10px; width: 100%;' value='{{this}}' />
                         {{/each}}
                     </div>
-                    <div class="col-9 p-2" id="newElementValue">Nội dung
+                    <div class="col-6 p-2" id="newElementValue">Số lượng nhập
                         {{#each data.valueInfoProduct}}
                         <input type='text' id='valueInfoProduct{{@index}}' name='valueInfoProduct'
                             style='margin-top: 10px; margin-bottom: 10px; width: 100%;' value='{{this}}' />
@@ -89,12 +111,12 @@
 
                 <div class="row ml-2">
                     <div id="dynamicCheck" style="width: 30px; height: 30px;">
-                        <img src="../../image/add.svg" width="100%" height="100%" onclick="add();">
+                        <img src="../../image/add2.svg" width="100%" height="100%" onclick="add();">
                     </div>
                     <div id="dynamicCheck" style="width: 30px; height: 30px;">
                         <img src="../../image/remove.svg" width="100%" height="100%" onclick="remove();">
                     </div>
-                </div>''
+                </div>
 
             </div>
         </div>
