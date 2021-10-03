@@ -76,7 +76,7 @@ app.use("/about-us", aboutUs);
 // Routing Client
 const client = require("./apiClient/routes/login");
 app.use("/client", client);
-
+console.log('http://localhost:3001')
 app.listen(process.env.PORT || 3001, () => {
     console.log('http://localhost:3001')
 });
