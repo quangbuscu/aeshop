@@ -2,7 +2,7 @@
 <div class="p-4" style="height: 80px;">
     <h2>DANH SÁCH SẢN PHẨM</h2>
     <div class="rounded-circle"
-        style="width: 55px; height: 55px;  position: absolute; top: 12px;right: 30px; background-color:red; padding: 14px;">
+         style="width: 55px; height: 55px;  position: absolute; top: 12px;right: 30px; background-color:red; padding: 14px;">
         <a href="/product/add-product" class="menu-btn">
             <img src="../../image/add.svg" width="100%" height="100%">
         </a>
@@ -12,28 +12,34 @@
 <div class="row pl-5 pr-5 pb-5">
     <table class="text-center">
         <thead>
-            <tr style="height:54px">
-                <th>Tên sản phẩm</th>
-                <th>Hình ảnh</th>
-                <th>Giá bán</th>
-                <th>Số lượng</th>
-                <th>Thao tác</th>
-            </tr>
+        <tr style="height:54px">
+            <th>Tên sản phẩm</th>
+            <th>Hình ảnh</th>
+            <th>Giá bán</th>
+            <th>Giá Nhập</th>
+            <th>Số lượng</th>
+            <th>Thương hiệu</th>
+            <th>Thao tác</th>
+        </tr>
         </thead>
         <tbody>
+        {{#each data}}
             <tr>
-                <th>Nem thịt CP đặc biệt - 500gr</th>
+                <th>{{this.name}}</th>
                 <th>
-                    <img src="../../image/logo1.svg" width="80" height="80">
+                    <img src="https://ae-shop.herokuapp.com/{{this.src.[0]}}" width="80" height="80">
                 </th>
-                <td>15,000 VNĐ</td>
-                <td>Otto</td>
+                <td>{{this.export_price}} $</td>
+                <td>{{this.impot_price}} $</td>
+                <td>Số lượng</td>
+                <td>{{this.brand_name}}</td>
                 <td>
                     <ul style="margin-bottom: 0px; padding-left: 0px;">
                         <li>
-                            <a href="/product/edit-product" style="color: #30DD21; margin-right: 15px; font-size:20px; text-decoration: none;">
+                            <a href="/product/edit-product/{{this.id_product}}"
+                               style="color: #30DD21; margin-right: 15px; font-size:20px; text-decoration: none;">
                                 <i class="fas fa-edit"></i>
-                                Sửa 
+                                Sửa
                             </a>
                         </li>
                         <li>
@@ -45,78 +51,7 @@
                     </ul>
                 </td>
             </tr>
-            <tr>
-                <th>Nem thịt CP đặc biệt - 500gr</th>
-                <th>
-                    <img src="../../image/logo1.svg" width="80" height="80">
-                </th>
-                <td>15,000 VNĐ</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th>Nem thịt CP đặc biệt - 500gr</th>
-                <th>
-                    <img src="../../image/logo1.svg" width="80" height="80">
-                </th>
-                <td>15,000 VNĐ</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th>Nem thịt CP đặc biệt - 500gr</th>
-                <th>
-                    <img src="../../image/logo1.svg" width="80" height="80">
-                </th>
-                <td>15,000 VNĐ</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th>Nem thịt CP đặc biệt - 500gr</th>
-                <th>
-                    <img src="../../image/logo1.svg" width="80" height="80">
-                </th>
-                <td>15,000 VNĐ</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th>Nem thịt CP đặc biệt - 500gr</th>
-                <th>
-                    <img src="../../image/logo1.svg" width="80" height="80">
-                </th>
-                <td>15,000 VNĐ</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th>Nem thịt CP đặc biệt - 500gr</th>
-                <th>
-                    <img src="../../image/logo1.svg" width="80" height="80">
-                </th>
-                <td>15,000 VNĐ</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th>Nem thịt CP đặc biệt - 500gr</th>
-                <th>
-                    <img src="../../image/logo1.svg" width="80" height="80">
-                </th>
-                <td>15,000 VNĐ</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-            <tr>
-                <th>Nem thịt CP đặc biệt - 500gr</th>
-                <th>
-                    <img src="../../image/logo1.svg" width="80" height="80">
-                </th>
-                <td>15,000 VNĐ</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
+        {{/each}}
         </tbody>
     </table>
 
@@ -136,7 +71,7 @@
     }
 
     td,
-        {
+    {
         vertical-align: bottom;
     }
 

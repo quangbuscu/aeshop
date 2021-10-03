@@ -1,55 +1,74 @@
 const Product = require('../models/Product');
 
-// const db = require(`../models/index.js`);
 /**
- * Class Auth Controller
+ * Class PRODUCT Controller
  */
 class ProductController {
+
   listProduct(req, res) {
-    // Product.getProduct(req.con, req.body.username, (err, result) => {
-    //     try {
-    //         res.render('product',{data: result});
-    //     } catch (error) {
-    //         res.send('Lỗi');
-    //     }
-    // })
-    console.log(req.body.email);
-    res.render('product')
+    Product.ListProduct(req.con, (err, resultProduct) => {
+      if (err) return res.send('<h1>ERROR</h1>')
+      if (resultProduct) {
+        Product.ListImage(req.con, (err, resultImage) => {
+          if (err) return res.send('<h1>ERROR</h1>')
+          if (resultImage) {
+            for (var i = 0; i < resultProduct.length; i++) {
+              resultProduct[i].src=[]
+              for (var j = 0; j < resultImage.length; j++) {
+                if (resultProduct[i].id_product == resultImage[j].id_product) {
+                  resultProduct[i].src.push(resultImage[j].src);
+                }
+              }
+            }
+            // return res.json(resultProduct)
+            return res.render('product',{data:resultProduct})
+          }
+        })
+      }
+    })
   }
 
   addProduct(req, res) {
-    res.render('addproduct')
+    res.send('addproduct')
   }
 
   editProduct(req, res) {
-    var data = {
-      maneProduct: "1",
-      priceProduct: "1",
-      saleProduct: "1",
-      categoryProduct: "2",
-      typeProduct: "2",
-      desProduct: "as",
-      keyInfoProduct: [
-        "a",
-        "b",
-        "c",
-        "d"
-      ],
-      valueInfoProduct: [
-        "aaa",
-        "bbb",
-        "ccc",
-        "ddd"
-      ],
-      srcImg: [
-        "uploads/1630697457122.png",
-        "uploads/1630697457130.png",
-        "uploads/1630697457143.png",
-        "uploads/1630697457228.png",
-        "uploads/1630697457232.png"
-      ]
-    }
-    res.render('editproduct', {layout: false, data: data});
+    Product.DetailProduct(req.con,req.params.id_product,(err,result)=>{
+      if (err) return res.json({api:{
+          error_code: 400,
+          message: 'failed',
+          err: err,
+        }})
+      if (result[0]){
+        result[0].src =[];
+        result[0].keyInfoProduct= [
+          "a",
+          "b",
+          "c",
+          "d"
+        ]
+        result[0].valueInfoProduct= [
+          "aaa",
+          "bbb",
+          "ccc",
+          "ddd"
+        ]
+        Product.ListImageProduct(req.con,req.params.id_product,(err,resultImage)=>{
+          if (err) return res.json({api:{
+              error_code: 400,
+              message: 'failed',
+              err: err,
+            }})
+          if (resultImage){
+            for (let i in resultImage){
+              result[0].src.push(resultImage[i].src)
+            }
+            // res.json(result[0])
+            res.render('editproduct',{data:result[0]})
+          }
+        })
+      }
+    })
   }
 
   addProductFinal(req, res) {

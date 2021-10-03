@@ -23,4 +23,4 @@ module.exports = {
     con.query('SELECT src FROM image WHERE id_product = ? and image_type = "product"', id_product,callback)
   },
 
-  }
+}
