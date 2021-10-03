@@ -28,6 +28,7 @@ class ProductController {
   }
 
   addProduct(req, res) {
+    return res.render('addproduct')
   }
 
   editProduct(req, res) {
