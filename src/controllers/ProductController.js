@@ -20,7 +20,6 @@ class ProductController {
                 }
               }
             }
-            // return res.json(resultProduct)
             return res.render('product',{data:resultProduct})
           }
         })
@@ -29,7 +28,6 @@ class ProductController {
   }
 
   addProduct(req, res) {
-    res.send('addproduct')
   }
 
   editProduct(req, res) {
