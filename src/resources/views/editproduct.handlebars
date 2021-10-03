@@ -29,32 +29,37 @@
 
 
 
-<form action="/product/edit-product" method="post" enctype="multipart/form-data">
+<form action="/product/edit-product/{{data.id_product}}" method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-6 p-5">
             <div class="form-group">
-                <label for="maneProduct">Mã sản phẩm</label>
-                <input type="text" class="form-control input" id="maneProduct" name="maneProduct" disabled>
+                <label for="id_product">Mã sản phẩm</label>
+                <input type="text" value="{{data.id_product}}" class="form-control input" id="id_product" name="id_product" disabled>
             </div>
             <div class="form-group">
-                <label for="maneProduct">Tên sản phẩm</label>
-                <input type="text" class="form-control input" id="maneProduct" name="maneProduct" value="{{data.maneProduct}}"
+                <label for="name">Tên sản phẩm</label>
+                <input type="text" value="{{data.name}}" class="form-control input" id="name" name="name" value="{{data.maneProduct}}"
                     placeholder="Tên sản phẩm">
             </div>
             <div class="form-group">
-                <label for="priceProduct">Giá sản phẩm</label>
-                <input type="number" class="form-control input" id="priceProduct" name="priceProduct"
-                    value="{{data.priceProduct}}" placeholder="Giá sản phẩm">
+                <label for="export_price">Giá bán</label>
+                <input type="number" class="form-control input" id="export_price" name="export_price"
+                    value="{{data.export_price}}" placeholder="Giá sản phẩm">
             </div>
             <div class="form-group">
-                <label for="saleProduct">Khuyến mãi</label>
-                <input type="number" class="form-control input" id="saleProduct" name="saleProduct"
-                    value="{{data.saleProduct}}" placeholder="Khuyến mãi (%)">
+                <label for="impot_price">Giá nhập</label>
+                <input type="number" class="form-control input" id="impot_price" name="impot_price"
+                       value="{{data.impot_price}}" placeholder="Giá sản phẩm">
             </div>
             <div class="form-group">
-                <label for="categoryProduct">Loại</label>
-                <select class="custom-select mr-sm-2 input" id="categoryProduct" name="categoryProduct">
-                    <option value="{{data.categoryProduct}}">Chọn...</option>
+                <label for="sale">Khuyến mãi</label>
+                <input type="number" class="form-control input" id="sale" name="sale"
+                    value="{{data.sale}}" placeholder="Khuyến mãi (%)">
+            </div>
+            <div class="form-group">
+                <label for="id_category">Loại</label>
+                <select class="custom-select mr-sm-2 input" id="id_category" name="id_category">
+                    <option value="{{data.id_category}}">Chọn...</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -63,9 +68,9 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="sesionProduct">Mùa</label>
-                <select class="custom-select mr-sm-2 input" id="sesionProduct" name="sesionProduct">
-                    <option value="{{data.sesionProduct}}">Chọn...</option>
+                <label for="id_style">Mùa</label>
+                <select class="custom-select mr-sm-2 input" id="id_style" name="id_style">
+                    <option value="{{data.id_style}}">Chọn...</option>
                     <option value="1">11</option>
                     <option value="2">22</option>
                     <option value="3">33</option>
@@ -79,15 +84,15 @@
         <div class="col-6 p-5">
             <div class="form-group">
                 <label for="desProduct">Thông tin chi tiết</label>
-                <textarea class="form-control input" id="desProduct" rows="3" name="desProduct">{{data.desProduct}}</textarea>
+                <textarea class="form-control input" id="desProduct" rows="3" name="desProduct">{{data.description}}</textarea>
             </div>
             <div class="form-group input p-2">
                 <label>Hình ảnh</label>
                 <div id="preview" style="margin-top: 10px; margin-bottom: 10px;"></div>
                 <input type="file" accept="image/*" class="form-control input" id="pictureProduct" name="pictureProduct" multiple="true">
-                <div>
-                    {{#each data.srcImg}}
-                    <img src="../../{{this}}" class="imageThumb" id="img{{@index}}" name="{{this}}">
+                <div class="p-3">
+                    {{#each data.src}}
+                    <img src="https://ae-shop.herokuapp.com/{{this}}" class="imageThumb" id="img{{@index}}" name="{{this}}">
                     {{/each}}
                 </div>
             </div>
@@ -137,7 +142,7 @@
         var txtNewInputValue = document.createElement('div');
 
         // Then add the content (a new input box) of the element.
-        txtNewInputKey.innerHTML = "<input type='text' id='keyInfoProduct" + i + "' name='keyInfoProduct' style='margin-top: 10px; margin-bottom: 10px;'/>";
+        txtNewInputKey.innerHTML = "<input type='text' id='keyInfoProduct" + i + "' name='keyInfoProduct' style='margin-top: 10px; margin-bottom: 10px;width: 100%;'/>";
         txtNewInputValue.innerHTML = "<input type='text' id='valueInfoProduct" + i + "' name='valueInfoProduct' style='margin-top: 10px; margin-bottom: 10px; width: 100%;'/>";
 
         // Finally put it where it is supposed to appear.
@@ -190,14 +195,12 @@
     document.querySelector('#pictureProduct').addEventListener("change", previewImages);
     var listImgRemove = document.getElementById("list-img-remove");
     var listImg =[];
-    {{#each data.srcImg }}
+    {{#each data.src }}
     var img{{@index}} = document.getElementById("img" + {{@index}});
     img{{@index}}.onclick = function(){
-        console.log(img{{@index}}.name); 
         listImg.push(img{{@index}}.name);
         listImgRemove.value = listImg;
         img{{@index}}.remove();
-        console.log(listImg);
     }
     {{/each}}
 </script>
