@@ -72,7 +72,7 @@ app.use("/help", help);
 const aboutUs = require("./routes/about-us");
 app.use("/about-us", aboutUs);
 
-
+console.log('http://localhost:3001')
 // Routing Client
 const client = require("./apiClient/routes/login");
 app.use("/client", client);
