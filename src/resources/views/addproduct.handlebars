@@ -190,7 +190,7 @@
         })
     }
     const setCategory = async () => {
-        const response = await fetch('https://ae-shop.herokuapp.com/category');
+        const response = await fetch('https://ae-shop.herokuapp.com/product/category');
         const myJson = await response.json(); //extract JSON from the http response
         myJson.map((item,i)=>{
             var optionElement = document.createElement("option");
