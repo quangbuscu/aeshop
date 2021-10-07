@@ -37,6 +37,11 @@ app.use(function(req, res, next) {
     req.con = con
     next()
 })
+con.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+});
+
 
 // RoutingWeb
 //Login
