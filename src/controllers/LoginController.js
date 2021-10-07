@@ -13,7 +13,6 @@ class LoginController {
         Admin.getAdmin(req.con, [req.body.email, req.body.password],
             (err, result) => {
                 if (err) throw err;
-
                 if (result[0] === undefined || result[0] == null) {
                     req.flash('message', 'Sai tài khoản hoặc mật khẩu!')
                     return res.redirect('/');

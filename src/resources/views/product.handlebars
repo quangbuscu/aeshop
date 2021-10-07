@@ -33,29 +33,51 @@
                 <td>{{this.impot_price}} $</td>
                 <td>Số lượng</td>
                 <td>{{this.brand_name}}</td>
-                <td>
+                <td style="margin: auto">
                     <ul style="margin-bottom: 0px; padding-left: 0px;">
                         <li>
-                            <a href="/product/edit-product/{{this.id_product}}"
+                            <a href="/product/edit-product/{{this.id_product}}" class="btn"
                                style="color: #30DD21; margin-right: 15px; font-size:20px; text-decoration: none;">
                                 <i class="fas fa-edit"></i>
                                 Sửa
                             </a>
                         </li>
                         <li>
-                            <a href="#" style="color: #FF0000; font-size:20px; text-decoration: none;">
+                            <button type="button" class="btn" data-toggle="modal" data-target="#exampleModalCenter"
+                                    style="background-color: white; color: #FF0000; font-size:20px; border-color: white">
                                 <i class="far fa-trash-alt"></i>
                                 Xóa
-                            </a>
+                            </button>
                         </li>
                     </ul>
                 </td>
             </tr>
+            <form id="myForm" method="post" action="/product/delete-product/{{this.id_product}}" style="display: none;"></form>
         {{/each}}
         </tbody>
     </table>
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-notify modal-info" role="document">
+            <div class="modal-content text-center">
+                <div class="modal-body">
+                    <img class="animated rotateIn mb-4" src="../../image/notifycation.png" width="150" height="150"/>
+                    <p>Bạn có muốn xóa mục này ?</p>
+                </div>
+                <div class="mb-3 flex-center">
+                    <a style="width: 30%; background-color: #C5C5C5; color: black" type="button"
+                       class="btn waves-effect" data-dismiss="modal">Không</a>
+                    <a style="width: 30%;  background-color: #F91A07; color: white" href="" class="btn" onclick="event.preventDefault();
+                    document.getElementById('myForm').submit();">Có</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
+
+
+<!-- Modal -->
 
 
 <style>
@@ -68,11 +90,6 @@
     table {
         border-collapse: collapse;
         width: 100%;
-    }
-
-    td,
-    {
-        vertical-align: bottom;
     }
 
     li {

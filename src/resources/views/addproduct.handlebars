@@ -34,67 +34,57 @@
     <div class="row">
         <div class="col-xl-6 p-5">
             <div class="form-group">
-                <label for="maneProduct">Tên sản phẩm</label>
-                <input type="text" class="form-control input" id="maneProduct" name="maneProduct"
+                <label for="name">Tên sản phẩm</label>
+                <input type="text" class="form-control input" id="name" name="name"
                     placeholder="Tên sản phẩm" style="background-color: #DFDFDF">
             </div>
             <div class="form-group">
-                <label for="priceProduct">Giá bans</label>
-                <input type="number" class="form-control input" id="priceProduct" name="priceProduct"
+                <label for="export_price">Giá bán</label>
+                <input type="number" class="form-control input" id="export_price" name="export_price"
                     placeholder="Giá sản phẩm">
             </div>
             <div class="form-group">
-                <label for="saleProduct">Khuyến mãi</label>
-                <input type="number" class="form-control input" id="saleProduct" name="saleProduct"
+                <label for="impot_price">Giá nhập</label>
+                <input type="number" class="form-control input" id="impot_price" name="impot_price"
+                       placeholder="Giá sản phẩm">
+            </div>
+            <div class="form-group">
+                <label for="sale">Khuyến mãi</label>
+                <input type="number" class="form-control input" id="sale" name="sale"
                     placeholder="Khuyến mãi (%)">
             </div>
             <div class="form-group">
-                <label for="categoryProduct">Loại</label>
-                <select class="custom-select mr-sm-2 input" id="categoryProduct" name="categoryProduct">
-                    <option selected>Chọn...</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                <label for="id_category">Loại</label>
+                <select class="custom-select mr-sm-2 input" id="id_category" name="id_category">
+                    <option selected value="">Chọn...</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="sesionProduct">Mùa</label>
-                <select class="custom-select mr-sm-2 input" id="sesionProduct" name="sesionProduct">
-                    <option selected>Chọn...</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                <label for="id_style">Mùa</label>
+                <select class="custom-select mr-sm-2 input" id="id_style" name="id_style">
+                    <option selected value="">Chọn...</option>
                 </select>
             </div>
         </div>
         <div class="col-xl-6 p-5">
             <div class="form-group">
-                <label for="brandProduct">Thương hiệu</label>
-                <select class="custom-select mr-sm-2 input" id="brandProduct" name="brandProduct">
-                    <option selected>Chọn...</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                <label for="id_brand">Thương hiệu</label>
+                <select class="custom-select mr-sm-2 input" id="id_brand" name="id_brand">
+                    <option selected value="">Chọn...</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="desProduct">Thông tin chi tiết</label>
-                <textarea class="form-control input" id="desProduct" rows="3" name="desProduct"></textarea>
+                <label for="description">Thông tin chi tiết</label>
+                <textarea class="form-control input" id="description" rows="3" name="description"></textarea>
             </div>
             <div class="form-group field input pl-2 pb-2" style="border-radius: 5px;">
                 <input type="file" accept="image/*" class="form-control-file" id="pictureProduct" name="pictureProduct"
-                    multiple="true" onclick="deletePriview()">
+                    multiple="true" onclick="removePreviewImage()">
 
                 <label for="pictureProduct" class="btn-add-img">Thêm ảnh</label>
             </div>
             <div class="form-group">
-                <label>Mô tả chi tiết</label>
+                <label>Số lượng</label>
 
                 <div class="row m-2 border pt-2 pb-2" style="background-color: #DFDFDF; border-radius: 5px;">
                     <div class="col-6" id="newElementKey">Size</div>
@@ -128,8 +118,8 @@
         var txtNewInputValue = document.createElement('div');
 
         // Then add the content (a new input box) of the element.
-        txtNewInputKey.innerHTML = "<input type='text' id='keyInfoProduct" + i + "' name='keyInfoProduct' style='margin-top: 10px; margin-bottom: 10px;width: 100%;'>";
-        txtNewInputValue.innerHTML = "<input type='number' id='valueInfoProduct" + i + "' name='valueInfoProduct' style='margin-top: 10px; margin-bottom: 10px; width: 100%;'>";
+        txtNewInputKey.innerHTML = "<input type='text' id='size" + i + "' name='size' style='margin-top: 10px; margin-bottom: 10px;width: 100%;'>";
+        txtNewInputValue.innerHTML = "<input type='number' id='qnt" + i + "' name='qnt' style='margin-top: 10px; margin-bottom: 10px; width: 100%;'>";
 
         // Finally put it where it is supposed to appear.
         document.getElementById("newElementKey").appendChild(txtNewInputKey);
@@ -137,8 +127,8 @@
     }
 
     function remove() {
-        var keyInfoProduct = document.getElementById("keyInfoProduct" + i);
-        var ValueInfoProduct = document.getElementById("valueInfoProduct" + i);
+        var keyInfoProduct = document.getElementById("size" + i);
+        var ValueInfoProduct = document.getElementById("qnt" + i);
 
         keyInfoProduct.remove();
         ValueInfoProduct.remove();
@@ -150,11 +140,7 @@
 
 
     var imginput = document.getElementById("pictureProduct");
-
-    function deletePriview() {
-        removePriviewImage()
-    }
-    function removePriviewImage() {
+    function removePreviewImage() {
         var pip = document.getElementsByClassName("pip");
         var pipLength = pip.length;
         for (var i = 0; i < pipLength; i++) {
@@ -191,4 +177,41 @@
             alert("Your browser doesn't support to File API")
         }
     });
+
+    const setBrand = async () => {
+        const response = await fetch('http://localhost:3001/product/brand');
+        const myJson = await response.json(); //extract JSON from the http response
+        myJson.map((item,i)=>{
+            var optionElement = document.createElement("option");
+            optionElement.value = item.id_brand;
+            optionElement.text = item.brand_name;
+            optionElement.selected = false;
+            document.getElementById("id_brand").appendChild(optionElement);
+        })
+    }
+    const setCategory = async () => {
+        const response = await fetch('http://localhost:3001/product/category');
+        const myJson = await response.json(); //extract JSON from the http response
+        myJson.map((item,i)=>{
+            var optionElement = document.createElement("option");
+            optionElement.value = item.id_category;
+            optionElement.text = item.name_category;
+            optionElement.selected = false;
+            document.getElementById("id_category").appendChild(optionElement);
+        })
+    }
+    const setStyle = async () => {
+        const response = await fetch('http://localhost:3001/product/style');
+        const myJson = await response.json(); //extract JSON from the http response
+        myJson.map((item,i)=>{
+            var optionElement = document.createElement("option");
+            optionElement.value = item.id_style;
+            optionElement.text = item.style_name;
+            optionElement.selected = false;
+            document.getElementById("id_style").appendChild(optionElement);
+        })
+    }
+    setBrand();
+    setStyle();
+    setCategory()
 </script>

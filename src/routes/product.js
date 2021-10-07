@@ -37,7 +37,12 @@ router.post("/add-product", upload.array('pictureProduct', 30), (req, res) => co
 
 router.post("/edit-product/:id_product", upload.array('pictureProduct', 30), (req, res) => controller.editProductFinal(req, res));
 
+router.post("/delete-product/:id_product", (req, res) => controller.deleteProduct(req, res));
 
-//  router.post("/login", (req, res) => controller.loginFinal(req, res));a
+router.get("/brand",(req, res) => controller.listBrand(req, res));
+
+router.get("/category",(req, res) => controller.listCategory(req, res));
+
+router.get("/style",(req, res) => controller.listStyle(req, res));
 
 module.exports = router;

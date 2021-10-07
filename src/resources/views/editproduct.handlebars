@@ -59,23 +59,28 @@
             <div class="form-group">
                 <label for="id_category">Loại</label>
                 <select class="custom-select mr-sm-2 input" id="id_category" name="id_category">
-                    <option value="{{data.id_category}}">Chọn...</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
+                    <option value="{{data.id_category}}">{{data.name_category}}</option>
+                    {{#each data.category}}
+                        <option value="{{this.id_category}}">{{this.name_category}}</option>
+                    {{/each}}
                 </select>
             </div>
             <div class="form-group">
                 <label for="id_style">Mùa</label>
                 <select class="custom-select mr-sm-2 input" id="id_style" name="id_style">
-                    <option value="{{data.id_style}}">Chọn...</option>
-                    <option value="1">11</option>
-                    <option value="2">22</option>
-                    <option value="3">33</option>
-                    <option value="4">44</option>
-                    <option value="5">55</option>
+                    <option value="{{data.id_style}}">{{data.style_name}}</option>
+                    {{#each data.seasion}}
+                        <option value="{{this.id_style}}">{{this.style_name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="id_brand">Thương hiệu</label>
+                <select class="custom-select mr-sm-2 input" id="id_brand" name="id_brand">
+                    <option value="{{data.id_brand}}">{{data.brand_name}}</option>
+                    {{#each data.brand}}
+                        <option value="{{this.id_brand}}">{{this.brand_name}}</option>
+                    {{/each}}
                 </select>
             </div>
         </div>
@@ -83,8 +88,8 @@
 
         <div class="col-6 p-5">
             <div class="form-group">
-                <label for="desProduct">Thông tin chi tiết</label>
-                <textarea class="form-control input" id="desProduct" rows="3" name="desProduct">{{data.description}}</textarea>
+                <label for="description">Thông tin chi tiết</label>
+                <textarea class="form-control input" id="description" rows="3" name="description">{{data.description}}</textarea>
             </div>
             <div class="form-group input p-2">
                 <label>Hình ảnh</label>
@@ -101,25 +106,24 @@
 
                 <div class="row m-2 border">
                     <div class="col-6 p-2" id="newElementKey">Size
-                        {{#each data.keyInfoProduct}}
+                        {{#each data.size}}
                         <input type='text' id='keyInfoProduct{{@index}}' name='keyInfoProduct'
-                            style='margin-top: 10px; margin-bottom: 10px; width: 100%;' value='{{this}}' />
+                            style='margin-top: 10px; margin-bottom: 10px; width: 100%;' value='{{this.size_name}}' />
                         {{/each}}
                     </div>
                     <div class="col-6 p-2" id="newElementValue">Số lượng nhập
-                        {{#each data.valueInfoProduct}}
+                        {{#each data.size}}
                         <input type='text' id='valueInfoProduct{{@index}}' name='valueInfoProduct'
-                            style='margin-top: 10px; margin-bottom: 10px; width: 100%;' value='{{this}}' />
+                            style='margin-top: 10px; margin-bottom: 10px; width: 100%;' value='{{this.qnt}}' />
                         {{/each}}
                     </div>
                 </div>
-
                 <div class="row ml-2">
                     <div id="dynamicCheck" style="width: 30px; height: 30px;">
-                        <img src="../../image/add2.svg" width="100%" height="100%" onclick="add();">
+                        <img src="../../image/add2.svg" width="100%" height="100%" onclick="add()">
                     </div>
                     <div id="dynamicCheck" style="width: 30px; height: 30px;">
-                        <img src="../../image/remove.svg" width="100%" height="100%" onclick="remove();">
+                        <img src="../../image/remove.svg" width="100%" height="100%" onclick="remove()">
                     </div>
                 </div>
 
@@ -135,9 +139,8 @@
 </form>
 
 <script>
-    var i = {{ data.keyInfoProduct.length }};;
+    var i = {{ data.size.length }};
     function add() {
-        i++;
         var txtNewInputKey = document.createElement('div');
         var txtNewInputValue = document.createElement('div');
 
@@ -148,6 +151,7 @@
         // Finally put it where it is supposed to appear.
         document.getElementById("newElementKey").appendChild(txtNewInputKey);
         document.getElementById("newElementValue").appendChild(txtNewInputValue);
+        i++;
     }
 
     function remove() {
