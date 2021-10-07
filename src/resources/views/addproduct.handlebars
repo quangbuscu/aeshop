@@ -1,6 +1,10 @@
 <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="../../css/preview-image.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../../bootstrap/js/bootstrap.min.js">
+
 
 <style>
     .input {
@@ -36,32 +40,32 @@
             <div class="form-group">
                 <label for="name">Tên sản phẩm</label>
                 <input type="text" class="form-control input" id="name" name="name"
-                    placeholder="Tên sản phẩm" style="background-color: #DFDFDF">
+                    placeholder="Tên sản phẩm" style="background-color: #DFDFDF" required>
             </div>
             <div class="form-group">
                 <label for="export_price">Giá bán</label>
                 <input type="number" class="form-control input" id="export_price" name="export_price"
-                    placeholder="Giá sản phẩm">
+                    placeholder="Giá sản phẩm" required>
             </div>
             <div class="form-group">
                 <label for="impot_price">Giá nhập</label>
                 <input type="number" class="form-control input" id="impot_price" name="impot_price"
-                       placeholder="Giá sản phẩm">
+                       placeholder="Giá sản phẩm" required>
             </div>
             <div class="form-group">
                 <label for="sale">Khuyến mãi</label>
                 <input type="number" class="form-control input" id="sale" name="sale"
-                    placeholder="Khuyến mãi (%)">
+                    placeholder="Khuyến mãi (%)" required>
             </div>
             <div class="form-group">
                 <label for="id_category">Loại</label>
-                <select class="custom-select mr-sm-2 input" id="id_category" name="id_category">
+                <select class="form-control input" id="id_category" name="id_category" required>
                     <option selected value="">Chọn...</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="id_style">Mùa</label>
-                <select class="custom-select mr-sm-2 input" id="id_style" name="id_style">
+                <select class="form-control input" id="id_style" name="id_style" required>
                     <option selected value="">Chọn...</option>
                 </select>
             </div>
@@ -69,7 +73,7 @@
         <div class="col-xl-6 p-5">
             <div class="form-group">
                 <label for="id_brand">Thương hiệu</label>
-                <select class="custom-select mr-sm-2 input" id="id_brand" name="id_brand">
+                <select class="form-control input" id="id_brand" name="id_brand" required>
                     <option selected value="">Chọn...</option>
                 </select>
             </div>
@@ -80,7 +84,6 @@
             <div class="form-group field input pl-2 pb-2" style="border-radius: 5px;">
                 <input type="file" accept="image/*" class="form-control-file" id="pictureProduct" name="pictureProduct"
                     multiple="true" onclick="removePreviewImage()">
-
                 <label for="pictureProduct" class="btn-add-img">Thêm ảnh</label>
             </div>
             <div class="form-group">
@@ -105,10 +108,25 @@
     </div>
 
     <div class="col p-5" style="margin: auto; text-align: center">
-        <input type="submit" class="btn btn-primary" style="width: 300px;" />
-
+        <input type="submit" class="btn" style="width: 300px; background-color: red; color: white" />
     </div>
 </form>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="false">
+    <div class="modal-dialog modal-notify modal-info" role="document">
+        <div class="modal-content text-center">
+            <div class="modal-body">
+                <img class="animated rotateIn mb-4" src="../../image/notifycation.png" width="150" height="150"/>
+                <p>{{{message}}}</p>
+            </div>
+            <div class="mb-3 flex-center">
+                <a style="width: 30%; background-color: #C5C5C5; color: black" type="button"
+                   class="btn waves-effect" data-dismiss="modal">Không</a>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="text" value="{{message}}" id="my-name" hidden>
 
 <script>
     var i = 0;
@@ -118,8 +136,8 @@
         var txtNewInputValue = document.createElement('div');
 
         // Then add the content (a new input box) of the element.
-        txtNewInputKey.innerHTML = "<input type='text' id='size" + i + "' name='size' style='margin-top: 10px; margin-bottom: 10px;width: 100%;'>";
-        txtNewInputValue.innerHTML = "<input type='number' id='qnt" + i + "' name='qnt' style='margin-top: 10px; margin-bottom: 10px; width: 100%;'>";
+        txtNewInputKey.innerHTML = "<input class='form-control' type='text' id='size" + i + "' name='size' style='margin-top: 10px; margin-bottom: 10px;width: 100%;'>";
+        txtNewInputValue.innerHTML = "<input class='form-control' type='number' id='qnt" + i + "' name='qnt' style='margin-top: 10px; margin-bottom: 10px; width: 100%;'>";
 
         // Finally put it where it is supposed to appear.
         document.getElementById("newElementKey").appendChild(txtNewInputKey);
@@ -213,5 +231,9 @@
     }
     setBrand();
     setStyle();
-    setCategory()
+    setCategory();
+    var message = $("#my-name").val();
+    if (message){
+        $('#exampleModalCenter').modal('show');
+    }
 </script>

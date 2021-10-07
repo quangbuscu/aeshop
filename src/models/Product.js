@@ -41,7 +41,6 @@ module.exports = {
     con.query(sql, [data], callback);
   },
   AddImageProduct(con, data, callback) {
-    console.log(data)
     var sql = 'INSERT INTO image(id_product,src,image_type) VALUES ?;'
     con.query(sql, [data], callback);
   },

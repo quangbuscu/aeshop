@@ -28,7 +28,7 @@ class ProductController {
   }
 
   addProduct(req, res) {
-    return res.render('addproduct')
+    return res.render('addproduct',{ message: req.flash('message') })
   }
 
   editProduct(req, res) {
@@ -70,31 +70,40 @@ class ProductController {
     var fileName = req.files.map(function (item, index) {
       return `uploads/` + item.filename;
     })
-    var src = []
-    for (let i in fileName) {
-      src.push([12, fileName[i], 'product']);
+    if (!fileName){
+      req.flash('message', 'Chư có hình ảnh');
+      return res.redirect('add-product')
     }
-    if (req.body.id_brand || req.body.id_style || req.body.id_category){
+    if (req.body.id_brand === '' || req.body.id_style === '' || req.body.id_category === '') {
+      req.flash('message', 'Lỗi nhập dữ liệu!');
       return res.redirect('add-product')
     }
     Product.AddProduct(req.con, req.body, (err, result) => {
-      if (err) return res.send('<h1>ERROR</h1>')
+      if (err){
+        req.flash('message', 'Lỗi! Vui lòng thử lại');
+        return res.redirect('add-product')
+      }
       if (result) {
         var values = []
         for (let i in req.body.size) {
           values.push([result.insertId, req.body.size[i], Number.parseInt(req.body.qnt[i])]);
         }
         Product.AddSizeProduct(req.con, values, (errSize, resultSize) => {
-          if (errSize) return res.send('<h1>ERROR</h1>')
+          if (errSize){
+            req.flash('message', 'Lỗi! Vui lòng thử lại');
+            return res.redirect('add-product')
+          }
           if (resultSize) {
-            var src = []
+            const src = [];
             for (let i in fileName) {
               src.push([result.insertId, fileName[i], 'product']);
             }
             Product.AddImageProduct(req.con, src, (errSrc, resultSrc) => {
-              if (errSrc) return res.send(errSrc)
-              if (resultSrc) res.redirect('/product')
-
+              if (errSrc) {
+                req.flash('message', 'Lỗi! Vui lòng thử lại.');
+                return res.redirect('add-product')
+              }
+              return res.redirect('add-product')
             })
           }
         })
@@ -160,19 +169,19 @@ class ProductController {
   }
 
   listBrand(req, res) {
-    Product.ListBrand(req.con,(err,result)=>{
+    Product.ListBrand(req.con, (err, result) => {
       if (result) return res.json(result);
     })
   }
 
   listCategory(req, res) {
-    Product.ListCategory(req.con,(err,result)=>{
+    Product.ListCategory(req.con, (err, result) => {
       if (result) return res.json(result);
     })
   }
 
   listStyle(req, res) {
-    Product.ListStyle(req.con,(err,result)=>{
+    Product.ListStyle(req.con, (err, result) => {
       if (result) return res.json(result);
     })
   }
