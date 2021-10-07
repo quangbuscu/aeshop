@@ -152,7 +152,7 @@ class ProductController {
         if (err) return res.send(err)
         Product.DeleteImageProduct(req.con, req.params.id_product, (err, result) => {
           if (err) return res.send(err)
-          return res.redirect('product')
+          return res.redirect('/product')
         })
       })
     })
