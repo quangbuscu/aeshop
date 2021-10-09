@@ -74,7 +74,7 @@ class ProductController {
       req.flash('message', 'Chư có hình ảnh');
       return res.redirect('add-product')
     }
-    if (req.body.id_brand === '' || req.body.id_style === '' || req.body.id_category === '') {
+    if (req.body.id_brand === '' || req.body.id_style === '' || req.body.id_category === '' || !req.body.size) {
       req.flash('message', 'Lỗi nhập dữ liệu!');
       return res.redirect('add-product')
     }
@@ -103,6 +103,7 @@ class ProductController {
                 req.flash('message', 'Lỗi! Vui lòng thử lại.');
                 return res.redirect('add-product')
               }
+              req.flash('message', 'Thêm thành công!');
               return res.redirect('add-product')
             })
           }
