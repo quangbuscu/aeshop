@@ -10,7 +10,8 @@ function verifyToken(req, res, next) {
                 res.redirect('/',)
             }
             if (decoded){
-                req.body.email = decoded.email;
+                req.auth = decoded.email;
+                console.log("Verify Success!")
                 next();
             }
         });

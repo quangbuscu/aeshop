@@ -1,18 +1,23 @@
 const jwt = require('jsonwebtoken')
 const Admin = require('../models/Admin')
-    // const db = require(`../models/index.js`);
-    /**
-     * Class Auth Controller
-     */
+const md5 = require('md5');
+
+/**
+ * Class Auth Controller
+ */
 class LoginController {
     login(req, res) {
         res.render('login', { layout: false, message: req.flash('message') });
     }
 
     loginFinal(req, res) {
-        Admin.getAdmin(req.con, [req.body.email, req.body.password],
+        var password = md5(req.body.password);
+        Admin.getAdmin(req.con, [req.body.email, password],
             (err, result) => {
-                if (err) throw err;
+                if (err) {
+                  req.flash('message', 'Lỗi server! Vui lòng thử lại sau')
+                  return res.redirect('/');
+                }
                 if (result[0] === undefined || result[0] == null) {
                     req.flash('message', 'Sai tài khoản hoặc mật khẩu!')
                     return res.redirect('/');
