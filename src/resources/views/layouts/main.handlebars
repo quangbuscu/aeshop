@@ -67,20 +67,20 @@
                         <li class="nav-item" id="news" role="presentation">
                             <a class="nav-link" id="newsChild" href="/news">
                                 <i class="fas fa-newspaper pr-2"></i>
-                                <span>Tin tức</span>
+                                <span style="display: inline-block;">Tin tức</span>
                             </a>
                         </li>
                         <li class="nav-item" id="product" role="presentation">
                             <a class="nav-link" id="productChild" href="/product">
                                 <i class="fas fa-box pr-2"></i>
-                                <span>Quản lý sẳn phẩm</span>
+                                <span style="display: inline-block;">Quản lý sẳn phẩm</span>
                             </a>
 
                         </li>
                         <li class="nav-item" id="bill" role="presentation" style="position: relative;">
                             <a class="nav-link" id="billChild" href="/order">
                                 <i class="fas fa-file-invoice-dollar pr-2"></i>
-                                <span>Quản lý đơn hàng</span>
+                                <span style="display: inline-block;">Quản lý đơn hàng</span>
                                 <div class="rounded-circle" id="newBill">
                                     <p id="newBillNumber">1</p>
                                 </div>
@@ -89,19 +89,19 @@
                         <li class="nav-item" id="setting" role="presentation">
                             <a class="nav-link" id="settingChild" href="/administrator">
                                 <i class="fas fa-user-cog pr-2"></i>
-                                <span>Cài đặt tài khoản</span>
+                                <span style="display: inline-block;">Cài đặt tài khoản</span>
                             </a>
                         </li>
                         <li class="nav-item" id="support" role="presentation">
                             <a class="nav-link" id="supportChild" href="/help">
                                 <i style="width: 28px;" class="fas fa-question pr-2"></i>
-                                <span>Hỗ trợ</span>
+                                <span  style="display: inline-block;">Hỗ trợ</span>
                             </a>
                         </li>
                         <li class="nav-item" id="about-us" role="presentation">
                             <a class="nav-link" id="aboutUsChild" href="/about-us">
                                 <i style="width: 28px;" class="fas fa-info pr-2 pl-1"></i>
-                                <span>Thông tin về cửa hàng</span>
+                                <span  style="display: inline-block;">Thông tin về cửa hàng</span>
                             </a>
                         </li>
                     </ul>
@@ -209,7 +209,6 @@
         }
 
         support.onclick = function () {
-
             setCookie("menu", "support");
         }
         if (getCookie("menu") == "support") {

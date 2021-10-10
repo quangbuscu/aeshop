@@ -44,11 +44,11 @@
         <div style=" text-align: center;">
             <img src="../../image/bg_img.png" width="130" height="110" class="shadow form-group p-2" alt=""
                 style="border-radius: 15px;" id="imgPreview">
-            <input type="file" class="form-control-file input-file" id="imgInp" name="pictureNews">
+            <input type="file" accept="image/*" class="form-control-file input-file" id="imgInp" name="imageNews">
             <label for="imgInp" class="btn-add-img">Thêm ảnh</label>
         </div>
         <div class="form-group pl-3" style="width: 100%;">
-            <textarea class="form-control input bg-white" id="contentNews0" rows="3" name="desProduct"
+            <textarea class="form-control input bg-white" id="contentNews0" rows="3" name="content"
                 style="max-width: 100%;" placeholder="Nhập tiêu đề..."></textarea>
         </div>
     </div>
@@ -83,12 +83,11 @@
         i++;
         console.log(i);
         var newElementNews = document.createElement('div');
-        // Then add the content (a new input box) of the element.
         newElementNews.innerHTML =
             "<div class='shadow p-3 bg-white d-flex mt-3' style=' width:100%; border-radius: 15px; margin-right: 10px;' id='elementNews" + i + "'>" +
                 "<div style=' text-align: center;  border-right: 2px solid rgba(0, 0, 0, 0.2);'>"+
                     "<img src='../../image/bg_img.png' width='130' height='110'class=' form-group p-2' alt='' style='border-radius: 15px;'" +"id='imgPreview"+i+"'>"+
-                    "<input type='file' class='form-control-file input-file' id='imgInp"+i+"' name='pictureNews'>"+
+                    "<input type='file' accept='image/*' class='form-control-file input-file' id='imgInp"+i+"' name='pictureNews'>"+
                     "<label for='imgInp"+i+"' class='btn-add-img'>Thêm ảnh</label>"+
                 "</div>"+
                 "<div class='form-group pl-3' style='width: 100%;'>" +

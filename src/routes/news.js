@@ -30,11 +30,11 @@ router.get("/", (req, res) => controller.getNews(req, res));
 
 router.get("/add-news", (req, res) => controller.addNews(req, res));
 
-router.post("/add-news", upload.array('pictureNews'), (req, res) => controller.addNewsFinally(req, res));
+router.post("/add-news", upload.array('imageNews'), (req, res) => controller.addNewsFinally(req, res));
 
 router.get("/edit-news", (req, res) => controller.editNews(req, res));
 
-router.post("/edit-news", upload.array('pictureNews'), (req, res) => controller.editNewsFinally(req, res));
+router.post("/edit-news", upload.array('imageNews'), (req, res) => controller.editNewsFinally(req, res));
 
 
 
