@@ -85,8 +85,12 @@ class ProductController {
       }
       if (result) {
         var values = []
-        for (let i in req.body.size) {
-          values.push([result.insertId, req.body.size[i], Number.parseInt(req.body.qnt[i])]);
+        if (typeof req.body.size ==='object'){
+          for (let i in req.body.size) {
+            values.push([result.insertId, req.body.size[i], Number.parseInt(req.body.qnt[i])]);
+          }
+        }else {
+          values[0] = [result.insertId, req.body.size, Number.parseInt(req.body.qnt)]
         }
         Product.AddSizeProduct(req.con, values, (errSize, resultSize) => {
           if (errSize){
