@@ -19,17 +19,17 @@
             <div class="form-group">
                 <label for="export_price">Giá bán</label>
                 <input type="number" class="form-control input" id="export_price" name="export_price"
-                       placeholder="Giá sản phẩm" required>
+                       placeholder="Giá sản phẩm" required min="1" step="0.01">
             </div>
             <div class="form-group">
                 <label for="impot_price">Giá nhập</label>
                 <input type="number" class="form-control input" id="impot_price" name="impot_price"
-                       placeholder="Giá sản phẩm" required>
+                       placeholder="Giá sản phẩm" required min="1" step="0.01">
             </div>
             <div class="form-group">
                 <label for="sale">Khuyến mãi</label>
                 <input type="number" class="form-control input" id="sale" name="sale"
-                       placeholder="Khuyến mãi (%)" required>
+                       placeholder="Khuyến mãi (%)" required min="0" max="100" step="0.01">
             </div>
             <div class="form-group">
                 <label for="id_category">Loại</label>

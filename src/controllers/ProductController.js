@@ -125,8 +125,12 @@ class ProductController {
     data.listImgRemove = data.listImgRemove.split(",");
     data.srcImg = fileName;
     data.size = []
-    for (let i in req.body.keyInfoProduct) {
-      data.size.push([Number.parseInt(data.id_product), req.body.keyInfoProduct[i], Number.parseInt(req.body.valueInfoProduct[i])]);
+    if (typeof req.body.keyInfoProduct ==='object'){
+      for (let i in req.body.keyInfoProduct) {
+        data.size.push([Number.parseInt(data.id_product), req.body.keyInfoProduct[i], Number.parseInt(req.body.valueInfoProduct[i])]);
+      }
+    }else {
+      data.size[0] = [Number.parseInt(data.id_product), req.body.keyInfoProduct, Number.parseInt(req.body.valueInfoProduct)]
     }
     Product.UpdateProduct(req.con, data, (err, result) => {
       if (err) return res.send(err)

@@ -70,8 +70,8 @@ $(document).ready(function () {
 
 //Set list Brand
 const setBrand = async () => {
-  const response = await fetch('https://ae-shop.herokuapp.com/product/brand');
-  // const response = await fetch('http://localhost:3001/product/brand');
+  // const response = await fetch('https://ae-shop.herokuapp.com/product/brand');
+  const response = await fetch('http://localhost:3001/product/brand');
   const myJson = await response.json(); //extract JSON from the http response
   myJson.map((item, i) => {
     var optionElement = document.createElement("option");
@@ -84,8 +84,8 @@ const setBrand = async () => {
 setBrand();
 //Set list Category
 const setCategory = async () => {
-  const response = await fetch('https://ae-shop.herokuapp.com/product/category');
-  // const response = await fetch('http://localhost:3001/product/category');
+  // const response = await fetch('https://ae-shop.herokuapp.com/product/category');
+  const response = await fetch('http://localhost:3001/product/category');
   const myJson = await response.json(); //extract JSON from the http response
   myJson.map((item, i) => {
     var optionElement = document.createElement("option");
@@ -98,8 +98,8 @@ const setCategory = async () => {
 setCategory();
 //Set list Style
 const setStyle = async () => {
-  const response = await fetch('https://ae-shop.herokuapp.com/product/style');
-  // const response = await fetch('http://localhost:3001/product/style');
+  // const response = await fetch('https://ae-shop.herokuapp.com/product/style');
+  const response = await fetch('http://localhost:3001/product/style');
   const myJson = await response.json(); //extract JSON from the http response
   myJson.map((item, i) => {
     var optionElement = document.createElement("option");

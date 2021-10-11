@@ -25,7 +25,7 @@ class LoginController {
                     const token = jwt.sign({ email: result[0].email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '2d' });
                     res.cookie('token', token)
                     res.cookie('menu', 'product')
-                    return res.render('product');
+                    return res.redirect('/product');
                 }
 
             })

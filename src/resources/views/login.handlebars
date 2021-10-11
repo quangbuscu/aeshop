@@ -1,9 +1,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="../../css/login.css">
-
+<style>
+    form i {
+        margin-left: -30px;
+        cursor: pointer;
+    }
+</style>
 <div
   style="padding: 80px; background: linear-gradient(270deg, rgba(255, 0, 0, 0.6) 0%, #FF0000 77.92%); height: 100vh;">
   <div class="wrap d-md-flex" style="height:100%">
@@ -23,7 +29,12 @@
         </div>
         <div class="form-group mb-3">
           <label style="color: #4A5568" for="password">Mật khẩu</label>
-          <input type="password" id="password" name="password" class="form-control" placeholder="Mật khẩu" required>
+            <div style="position: relative; ">
+                <input type="password" class="form-control" id="password" name="password"
+                       placeholder="Nhập mật khẩu cũ" required>
+                <i class="fa fa-eye" id="togglePassword"
+                   style="position: absolute;cursor: pointer; right: 15; top: 15"></i>
+            </div>
         </div>
         <div class="form-group d-md-flex">
           <div class="w-50 text-left">
@@ -42,3 +53,16 @@
     </div>
   </div>
 </div>
+
+<script>
+    const togglePassword = document.querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+
+    togglePassword.addEventListener('click', function (e) {
+        // toggle the type attribute
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        // toggle the eye slash icon
+        this.classList.toggle('fa-eye-slash');
+    });
+</script>
