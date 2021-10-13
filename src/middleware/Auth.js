@@ -15,6 +15,9 @@ function verifyToken(req, res, next) {
                 next();
             }
         });
+    }else {
+      req.flash('message', 'Hết hạn đăng nhập!')
+      res.redirect('/',)
     }
 }
 
